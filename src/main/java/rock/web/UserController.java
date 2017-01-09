@@ -24,6 +24,7 @@ public class UserController {
 		System.out.println("User: "+user);
 		
 		userRepository.save(user);
+		
 		return "redirect:/users";
 	}
 	
