@@ -19,16 +19,19 @@ import rock.domain.Question;
 import rock.domain.QuestionRepository;
 import rock.domain.User;
 import rock.domain.UserRepository;
+import rock.service.AnswerService;
+import rock.service.QuestionService;
+import rock.service.UserService;
 
 @Controller
 @RequestMapping("/questions/{id}/answers")
 public class AnswerController {
 	@Autowired
-	private AnswerRepository answerRepository;
+	private AnswerService answerService;
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	
 	@PostMapping("")
@@ -38,28 +41,30 @@ public class AnswerController {
 		System.out.println("answer:"+ answer);
 		
 		String userId = (String) session.getAttribute("userId");
-		User user = userRepository.findByUserId(userId);
-		answer.setWriter(user);
-		
-		Question question = questionRepository.findOne(id);
+		User user = userService.findByUserId(userId);
+		answer.setAwriter(user);
+		System.out.println("2answer:"+answer);
+		Question question = questionService.findOne(id);
+		System.out.println("55");
+		System.out.println("55question"+questionService.findOne(id));
 		answer.setQuestionto(question);
-		System.out.println("***answer:"+ answer);
+		System.out.println("3answer:"+ answer);
 		
 		//현재시간
 		LocalDateTime date = LocalDateTime.now();
-		answer.setCreateDate(date);
-		
-		answerRepository.save(answer);
+		//answer.setCreateDate(date);
+		System.out.println("4answer:"+answer);
+		answerService.save(answer);
 		//model.addAttribute("answer",answer);
 		
 		return "redirect:/questions/{id}";
 	}
 	
-	
+	//답글 삭제
 	@DeleteMapping("/{answerId}")
 	public String delete(@PathVariable Long answerId, @PathVariable Long id){
 		System.out.println("delete method");
-		answerRepository.delete(answerId);
+		answerService.delete(answerId);
 		
 		return "redirect:/questions/{id}";
 	}

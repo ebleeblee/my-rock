@@ -23,7 +23,7 @@ public class HomeController {
 	public String list(Model model){
 		model.addAttribute("qna", questionRepository.findAll());
 		System.out.println("qnalist");
-		
+		System.out.println("인덱스");
 		return "index";
 	}
 	

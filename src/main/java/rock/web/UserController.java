@@ -15,21 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import rock.domain.User;
 import rock.domain.UserRepository;
+import rock.service.UserService;
 
 @Controller
 @RequestMapping("users")
 public class UserController {
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	//@PostMapping("/users")
 	@PostMapping("")
 	public String create(User user){
+		System.out.println("버튼-회원가입클릭");
+		
 		//사용자데이터저장하는 클래스를 만들고 그 클래스로 데이터를 받는다.(User 클래스)
 		
 		System.out.println("User: "+user);
 		
-		userRepository.save(user);
+		userService.save(user);
 		
 		return "redirect:/users";
 	}
@@ -37,12 +40,13 @@ public class UserController {
 	//@GetMapping("/users")
 	@GetMapping("")
 	public String list(Model model){
-		model.addAttribute("users", userRepository.findAll());
+		model.addAttribute("users", userService.findAll());
 		return "user/list";
 	}
 	
 	@GetMapping("/form")
 	public String form(){
+		System.out.println("헤더-회원가입클릭");
 		return "user/form";
 	}
 	
@@ -50,8 +54,8 @@ public class UserController {
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model){
 		System.out.println("id:"+ id);
-		model.addAttribute("users",userRepository.findOne(id) );
-		System.out.println("users:"+userRepository.findOne(id));
+		model.addAttribute("users",userService.findOne(id) );
+		System.out.println("users:"+userService.findOne(id));
 		return "/user/updateForm";
 	}
 	
@@ -81,9 +85,9 @@ public class UserController {
 		
 		System.out.println("업뎃");
 		//id로 디비 유저를 받아옴 그 유저에 새롭게 입력한 유저를 업뎃함.
-		User user = userRepository.findOne(id);
+		User user = userService.findOne(id);
 		user.update(newUser);
-		userRepository.save(user);
+		userService.save(user);
 		
 		return "redirect:/users";
 		
@@ -100,7 +104,7 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(String userId, String password, HttpSession session){
 		
-		User user = userRepository.findByUserId(userId);
+		User user = userService.findByUserId(userId);
 		if(user!=null){
 			
 			//user.matchPassword(updatedUser)

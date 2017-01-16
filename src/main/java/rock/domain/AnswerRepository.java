@@ -1,5 +1,7 @@
 package rock.domain;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
@@ -8,5 +10,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
 	//Answer findAll(Long id);
 	//Answer findByQId(Long id);
+	//List<Answer> findAnswer(Long id);
+	
 
 }
