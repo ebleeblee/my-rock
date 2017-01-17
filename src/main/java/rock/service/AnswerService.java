@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import rock.domain.Answer;
 import rock.domain.AnswerRepository;
+import rock.domain.Question;
 
 @Service
 public class AnswerService {
@@ -24,6 +25,12 @@ public class AnswerService {
 	public void findOne(Long answerId){
 		answerRepository.findOne(answerId);
 	}
+	
+	/*public List<Answer> findAnswers(Question question){
+		return answerRepository.findAnswers(question);
+	}
+	
+	*/
 
 	/*public List<Answer> findAll(Long qaId) {
 		// TODO Auto-generated method stub

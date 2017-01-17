@@ -29,8 +29,7 @@ import rock.domain.UserRepository;
 public class QuestionServiceTest {
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-	private AnswerService answerService;
+	
 	/*@Mock private QuestionRepository questionRepository;
 	@Mock private UserRepository userRepository;
 	@InjectMocks private QuestionService questionService;*/
@@ -81,6 +80,7 @@ public class QuestionServiceTest {
 	}
 	
 	@Test
+	//(expected =) 익셉션처리
 	public void matchUser_로그인사용자_질문한사람비교(){
 		assertEquals(true,question.matchUser(loginUser) );
 	}
@@ -114,7 +114,6 @@ public class QuestionServiceTest {
 		//SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		//String delTime = now.format(new Date());
 		//String delTime = "2017-01-16 06:18";
-		//세션의 유저정보를 받아서 삭제 정보를 남겨야 한다.
 		delQuestion.deleteLog(loginUser);
 		assertEquals(delQuestion.getDeleteNqaUser(), loginUser);
 	}

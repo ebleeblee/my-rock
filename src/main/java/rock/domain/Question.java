@@ -114,12 +114,12 @@ public class Question {
 	
 	
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "Question [id=" + id + ", writer=" + writer + ", answers=" + answers + ", title=" + title + ", contents="
-				+ contents + ", createDate=" + createDate + ", deleteFlag=" + deleteFlag + ", deleteNqaUser="
+				+ contents + ", deleteFlag=" + deleteFlag + ", deleteNqaUser="
 				+ deleteNqaUser + ", delTime=" + delTime + "]";
-	}*/
+	}
 	
 	
 

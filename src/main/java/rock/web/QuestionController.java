@@ -83,10 +83,13 @@ public class QuestionController {
 	public String delete(@PathVariable Long id, HttpSession session){
 		User loginUser = (User) session.getAttribute("sessionUser");
 		Question question = questionService.findOne(id);
+		
+		
 		if(question.matchUser(loginUser)){
 			System.out.println("**********true***********");
 			List<Answer>answers = question.getAnswers();
 			
+			System.out.println("answers:"+ answers);
 			activeQuestion(loginUser, question, answers);
 			
 		}
@@ -96,7 +99,7 @@ public class QuestionController {
 
 	private void activeQuestion(User loginUser, Question question, List<Answer> answers) {
 		if(question.isEmptyAnswer() || isTrue(question, answers)){
-			//삭제 가능
+			//삭제 가능 -> 플래그바꾸고, 로그쌓기
 			question.changeDeleteFlag();
 			question.deleteLog(loginUser);
 			questionService.save(question);

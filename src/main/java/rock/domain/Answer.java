@@ -60,7 +60,7 @@ public class Answer {
 	}
 	@Override
 	public String toString() {
-		return "Answer [answerId=" + answerId + ", awriter=" + awriter + ", questionto=" + questionto
+		return "Answer [answerId=" + answerId + ", awriter=" + awriter
 				+ ", answerContents=" + answerContents + "]";
 	}
 

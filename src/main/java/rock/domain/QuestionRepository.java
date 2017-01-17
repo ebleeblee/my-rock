@@ -9,4 +9,6 @@ public interface QuestionRepository extends CrudRepository<Question, Long> {
 
 	//List<Answer> findById(Long id);
 	List<Question> findByDeleteFlag(String deleteFlag);
+	//List<Answer> findById(Long id);
+	//find
 }

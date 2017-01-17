@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import rock.domain.Answer;
 import rock.domain.Question;
 import rock.domain.QuestionRepository;
 @Service
@@ -33,4 +34,8 @@ public class QuestionService {
 	return questions;
 	}
 	
+	/*public List<Answer> findAnswers(Long id){
+		return questionRepository.findById(id);
+	}
+	*/
 }
