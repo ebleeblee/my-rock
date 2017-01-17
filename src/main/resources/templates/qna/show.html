@@ -18,6 +18,9 @@
     <div class="col-md-12 col-sm-12 col-lg-12">
         <div class="panel panel-default">
         {{#question}}
+        {{#deleteFlag}}
+        {{/deleteFlag}}
+        {{^deleteFlag}}
           <header class="qna-header">
               <h2 class="qna-title">{{title}}</h2>
           </header>
@@ -101,6 +104,8 @@
                               {{/sessionUser}}    
                               <div class="clearfix" />
                           	  </form>
+                          	  
+                          	  {{/deleteFlag}}
                           	  {{/question}}
                       </div>
                   </div>

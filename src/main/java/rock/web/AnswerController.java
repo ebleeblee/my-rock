@@ -43,12 +43,8 @@ public class AnswerController {
 		String userId = (String) session.getAttribute("userId");
 		User user = userService.findByUserId(userId);
 		answer.setAwriter(user);
-		System.out.println("2answer:"+answer);
 		Question question = questionService.findOne(id);
-		System.out.println("55");
-		System.out.println("55question"+questionService.findOne(id));
 		answer.setQuestionto(question);
-		System.out.println("3answer:"+ answer);
 		
 		//현재시간
 		LocalDateTime date = LocalDateTime.now();

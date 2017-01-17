@@ -1,5 +1,7 @@
 package rock.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class QuestionService {
 		questionRepository.delete(question);
 	}
 	
+	public List<Question> findAll(){
+	String empty = null;
+	List<Question> questions = questionRepository.findByDeleteFlag(empty);
 	
+	return questions;
+	}
 	
 }

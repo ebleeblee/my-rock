@@ -2,7 +2,9 @@ package rock.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -164,6 +166,41 @@ public class Question {
 		///this.delTime =  now;
 		
 	}
+	
+	/*public Iterator<Question> notDeletedQuestion(List<Question> qna){
+		
+		for(int i=0; i<qna.size(); i++){
+			if(qna.get(i).deleteFlag!=DEL){
+				
+			}
+		}
+		
+		Iterator<Question> itr = qna.iterator();
+		//ArrayList<Question> notDeletedList = new ArrayList<>();
+		while(itr.hasNext()){
+			if(itr.next().deleteFlag==DEL){
+				itr.remove();
+			}
+		}
+		
+		
+		return itr;
+	}*/
+	
+	/*public Iterator<Question> notDelQna(Iterator<Question> qna){
+		
+		List<Question> qnaList = new ArrayList<Question>();
+		for(Iterator<Question>it= qnaList.iterator(); it.hasNext(); ){
+			Question notDelQuestion = it.next();
+			if(notDelQuestion.deleteFlag==DEL){
+				it.remove();
+			}
+		}
+		return notDelQuestion;
+		
+	}*/
+
+	
 	
 
 }

@@ -1,15 +1,21 @@
 package rock.web;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import rock.domain.Question;
 import rock.domain.QuestionRepository;
+import rock.service.QuestionService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private QuestionRepository questionRepository;
+	@Autowired
+	private QuestionService questionService;
 	
 	/*
 	@GetMapping("")
@@ -21,9 +27,10 @@ public class HomeController {
 	}*/
 	@GetMapping("")
 	public String list(Model model){
-		model.addAttribute("qna", questionRepository.findAll());
-		System.out.println("qnalist");
-		System.out.println("인덱스");
+		List<Question> qna = questionService.findAll();
+		System.out.println(qna);
+		model.addAttribute("qna",qna);
+		
 		return "index";
 	}
 	

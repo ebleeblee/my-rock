@@ -73,8 +73,6 @@ public class QuestionController {
 		Question question = questionService.findOne(id);
 		
 		int answerCount = question.getAnswers().size();
-		System.out.println("answerCount"+answerCount);
-		//question.setAnswerCount(answerCount);
 		model.addAttribute("answerCount",answerCount);
 		model.addAttribute("question", question);
 		//return "qna/show?answerCount=answerCount";
@@ -85,35 +83,24 @@ public class QuestionController {
 	public String delete(@PathVariable Long id, HttpSession session){
 		User loginUser = (User) session.getAttribute("sessionUser");
 		Question question = questionService.findOne(id);
-	//	System.out.println("------------------------------"+question);
-	//	System.out.println("&&&&&&&&&&&&&&&&&&&"+question.matchUser(loginUser));
 		if(question.matchUser(loginUser)){
 			System.out.println("**********true***********");
 			List<Answer>answers = question.getAnswers();
 			
-			if(question.isEmptyAnswer() || isTrue(question, answers)){
-				//삭제 가능
-				System.out.println("삭제가능!!!!!!!!!!!!!!!!");
-				question.changeDeleteFlag();
-				//깃에 올리기!!!!
-				
-				
-				/*
-				 * 타임 받는거 안됨!!
-				 */
-				//Date now= new Date();
-				//SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				//String delTime = now.format(new Date());
-				//String delTime = "2017-01-16 06:18";
-				//question.setDelTime(now);
-				//question.deleteLog(loginUser,delTime);
-				question.deleteLog(loginUser);
-				questionService.save(question);
-			}
+			activeQuestion(loginUser, question, answers);
 			
 		}
 		
 		return "redirect:/";
+	}
+
+	private void activeQuestion(User loginUser, Question question, List<Answer> answers) {
+		if(question.isEmptyAnswer() || isTrue(question, answers)){
+			//삭제 가능
+			question.changeDeleteFlag();
+			question.deleteLog(loginUser);
+			questionService.save(question);
+		}
 	}
 
 	private boolean isTrue(Question question, List<Answer> answers) {

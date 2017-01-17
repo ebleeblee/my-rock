@@ -95,7 +95,7 @@ public class QuestionServiceTest {
 		//Answer answer = answerService.
 		//assertEquals(true, question.matchAnswerUser(answer));
 		
-		//get함수 없이 어떻게 user를??
+		//get함수 없이 user찾기
 		//answerService.findAll(1L);
 		assertEquals(true, question.matchAnswerUser(answer));
 	}
@@ -113,11 +113,12 @@ public class QuestionServiceTest {
 		//Date now = new Date();
 		//SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		//String delTime = now.format(new Date());
-		String delTime = "2017-01-16 06:18";
+		//String delTime = "2017-01-16 06:18";
 		//세션의 유저정보를 받아서 삭제 정보를 남겨야 한다.
 		delQuestion.deleteLog(loginUser);
 		assertEquals(delQuestion.getDeleteNqaUser(), loginUser);
 	}
+	
 	
 	
 	
